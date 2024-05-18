@@ -3,23 +3,21 @@ using namespace std;
 
 map<int,string> Map;
 
-void mapping(){
+void mapping(string file_name){
 
-    ifstream file("mapping.txt");
+    ifstream file(file_name);
     int i;
     string s;
     while(file>>i>>s){
         Map[i] = s;
     }
-    for(int i=0;i<Map.size();i++){
-        cout<<i+1<<"-->"<<Map[i]<<endl;
-    }
+    
 }
 
 
 
 int main(){
-    mapping();
+    mapping("mapping.txt");
 
     return 0;
 }

@@ -1,6 +1,17 @@
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
+map<int,string> Map;
+void mapping(string file_name){
+
+    ifstream file(file_name);
+    int i;
+    string s;
+    while(file>>i>>s){
+        Map[i] = s;
+    }
+    
+}
 class Graph
 {
     int no_of_vertices;
@@ -28,6 +39,7 @@ class Graph
         {
             vertices[i].vertex_no = i;
         }
+        mapping("mapping.txt");
     }
 
     void addEdge(int from, int to, int weight)
@@ -51,10 +63,10 @@ class Graph
         }
         for(int i=0;i<no_of_vertices;i++)
         {
-            cout<<i<<" -> ";
+            cout<<Map[i]<<" -> ";
             for(int j=0;j<adjacencyList[i].size();j++)
             {
-                cout<<adjacencyList[i][j]<<" ";
+                cout<<Map[adjacencyList[i][j]]<<" ";
             }
             cout<<endl;
         }
@@ -62,13 +74,18 @@ class Graph
     
 };
 
+
+
+
 int main()
 {
-    Graph g(5);
-    g.addEdge(0,1,1);
-    g.addEdge(0,2,1);
-    g.addEdge(1,3,1);
-    g.addEdge(2,4,1);
+    Graph g(17);
+    int u,v;
+    ifstream file("edges.txt");
+    while(file>>u>>v){
+        g.addEdge(u,v,0);
+    }
+    
     g.displayAdjacencyList();
     return 0;
 }
