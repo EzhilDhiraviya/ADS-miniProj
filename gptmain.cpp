@@ -1,14 +1,15 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <map>
 #include "avl.h"
-#include <bits/stdc++.h>
- // Include your AVL Tree header file here
+#include "graph.h"
 
 using namespace std;
 
-map<int, string> Map;
+// map<int, string> Map;
 map<string, string> SyllabusMap;
+Graph g(17);  // Assuming your graph has 17 vertices
 
 // Function to load mapping and syllabus data from files
 void loadData() {
@@ -57,10 +58,21 @@ void searchSyllabus(AvlTree<string> &avlTree) {
     }
 }
 
+// Function to create the graph from edges file
+void createGraph() {
+    int u, v;
+    ifstream file("edges.txt");
+    while (file >> u >> v) {
+        g.addEdge(u, v, 1); // Assuming all edges have weight 1
+    }
+}
+
 int main() {
     loadData();
     AvlTree<string> avlTree;
+    createGraph();
 
+    int source, destination;
     int choice;
     do {
         cout << "\nWelcome to University Chatbot\n";
@@ -73,7 +85,9 @@ int main() {
         switch (choice) {
             case 1:
                 cout << "\nNavigation selected\n";
-                // Implement navigation functionality here
+                g.dijkstra(15); // Assuming 15 is the source node
+                g.displayShortestPath(6); // Assuming 6 is the destination node
+                cout << endl;
                 break;
             case 2:
                 cout << "\nSyllabus selected\n";
