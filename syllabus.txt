@@ -1,5 +1,5 @@
 IT5352 Programming-and-Data-Structures
-IT5351 Database-Management Systems
+IT5351 Database-Management-Systems
 IT5302 Software-Engineering
 IT5401 OOPS-and-ADS
 IT5402 Design-And-Analysis-of-Algorithms
