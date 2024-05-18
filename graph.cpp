@@ -7,9 +7,11 @@ int main()
     int u,v;
     ifstream file("edges.txt");
     while(file>>u>>v){
-        g.addEdge(u,v,0);
+        g.addEdge(u,v,1);
     }
-    
-    g.displayAdjacencyList();
+
+    g.dijkstra(15);
+    g.displayShortestPath(6);
+    cout<<endl;
     return 0;
 }
