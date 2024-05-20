@@ -3,6 +3,7 @@
 #include <string>
 #include "avl.h"
 #include <bits/stdc++.h>
+#include "splay.h"
  // Include your AVL Tree header file here
 
 using namespace std;
@@ -44,14 +45,25 @@ void printSyllabus() {
 }
 
 // Function to handle syllabus search and display
-void searchSyllabus(AvlTree<string> &avlTree) {
+void searchSyllabus(AvlTree<string> &avlTree,SplayTree<string> &SplayTree) {
+
+     if(!SplayTree.isEmpty()){
+        auto temp = SplayTree.getTop();
+        cout<<"\n Your Recent Search is:\n"<<"Course id:"<<temp<<"\nSyllabus:"<< SyllabusMap[temp]<<"\n";
+        
+    }
+    
     string courseId;
     cout << "Enter the course ID: ";
     cin >> courseId;
-
+    //show the top elemet of the splay tree;
+   
+    
     // Search for the course ID in the AVL tree
     if (avlTree.contains(courseId)) {
         cout << "Syllabus for Course ID " << courseId << ": " << SyllabusMap[courseId] << "\n";
+        SplayTree.insert(courseId);
+
     } else {
         cout << "Course ID not found\n";
     }
@@ -60,6 +72,8 @@ void searchSyllabus(AvlTree<string> &avlTree) {
 int main() {
     loadData();
     AvlTree<string> avlTree;
+    SplayTree<string> SplayTree;
+
 
     int choice;
     do {
@@ -69,6 +83,9 @@ int main() {
         cout << "3. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
+          for (auto i : SyllabusMap) {
+                    avlTree.insert(i.first);
+                }
 
         switch (choice) {
             case 1:
@@ -77,12 +94,8 @@ int main() {
                 break;
             case 2:
                 cout << "\nSyllabus selected\n";
-                // Store syllabus data in AVL tree
-                for (auto i : SyllabusMap) {
-                    avlTree.insert(i.first);
-                }
-                // Search and display syllabus
-                searchSyllabus(avlTree);
+                searchSyllabus(avlTree,SplayTree);
+
                 break;
             case 3:
                 cout << "\nExiting...\n";

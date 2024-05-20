@@ -25,11 +25,11 @@ class SplayTree
         splay(x, root);
         return root->element == x;
     }
+    // Function to get the top element of the Splay Tree
+    
 
-    bool isEmpty() const
-    {
-        return root == nullNode;
-    }
+
+    
 
     void rotateWithLeftChild(BinaryNode *&k2)
     {
@@ -112,7 +112,16 @@ public:
         makeEmpty(root);
         delete nullNode;
     }
+   Comparable getTop() {
+    if (isEmpty())
+        return Comparable{}; // Return default value if tree is empty
+    return root->element;
+}
 
+bool isEmpty() const
+    {
+        return root == nullNode;
+    }
     void insert(const Comparable &x)
     {
         static BinaryNode *newNode = nullptr;
