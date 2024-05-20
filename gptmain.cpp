@@ -88,7 +88,7 @@ int main() {
     SplayTree<string> SplayTree;
 
 
-    string source, destination;
+    int source, destination;
     int choice;
     do {
         cout << "\nWelcome to University Chatbot\n";
@@ -108,15 +108,8 @@ int main() {
                 cin>>source;
                 cout<<"Enter the place where you want to go: ";
                 cin>>destination;
-                string sourceKey;
-                for (const auto& entry : Map) {
-                    if (entry.second == source) {
-                        sourceKey = entry.first;
-                        break;
-                    }
-                }
 
-                g.dijkstra(stoi(sourceKey)); 
+                g.dijkstra(source); 
                 g.displayShortestPath(destination); 
                 cout << endl;
                 break;
@@ -126,7 +119,7 @@ int main() {
                 for (auto i : SyllabusMap) {
                     avlTree.insert(i.first);
                 }
-                searchSyllabus(avlTree);
+               // searchSyllabus(avlTree);
                 searchSyllabus(avlTree,SplayTree);
 
                 break;
