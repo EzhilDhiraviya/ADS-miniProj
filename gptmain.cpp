@@ -9,7 +9,7 @@ using namespace std;
 
 // map<int, string> Map;
 map<string, string> SyllabusMap;
-Graph g(17);  // Assuming your graph has 17 vertices
+Graph g(17);  
 
 // Function to load mapping and syllabus data from files
 void loadData() {
@@ -72,7 +72,7 @@ int main() {
     AvlTree<string> avlTree;
     createGraph();
 
-    int source, destination;
+    string source, destination;
     int choice;
     do {
         cout << "\nWelcome to University Chatbot\n";
@@ -85,8 +85,20 @@ int main() {
         switch (choice) {
             case 1:
                 cout << "\nNavigation selected\n";
-                g.dijkstra(15); // Assuming 15 is the source node
-                g.displayShortestPath(6); // Assuming 6 is the destination node
+                cout<<"Enter the place where you are: ";
+                cin>>source;
+                cout<<"Enter the place where you want to go: ";
+                cin>>destination;
+                string sourceKey;
+                for (const auto& entry : Map) {
+                    if (entry.second == source) {
+                        sourceKey = entry.first;
+                        break;
+                    }
+                }
+
+                g.dijkstra(stoi(sourceKey)); 
+                g.displayShortestPath(destination); 
                 cout << endl;
                 break;
             case 2:
@@ -95,7 +107,6 @@ int main() {
                 for (auto i : SyllabusMap) {
                     avlTree.insert(i.first);
                 }
-                // Search and display syllabus
                 searchSyllabus(avlTree);
                 break;
             case 3:
