@@ -16,8 +16,8 @@ Graph g(17);
 
 // Function to load mapping and syllabus data from files
 void loadData() {
-    ifstream fileformap("mapping.txt");
-    ifstream fileforSyllabus("syllabus.txt");
+    ifstream fileformap("texts/mapping.txt");
+    ifstream fileforSyllabus("texts/syllabus.txt");
     int i;
     string s;
 
@@ -75,7 +75,7 @@ void searchSyllabus(AvlTree<string> &avlTree,SplayTree<string> &SplayTree) {
 // Function to create the graph from edges file
 void createGraph() {
     int u, v;
-    ifstream file("edges.txt");
+    ifstream file("texts/edges.txt");
     while (file >> u >> v) {
         g.addEdge(u, v, 1); // Assuming all edges have weight 1
     }
@@ -88,7 +88,7 @@ int main() {
     SplayTree<string> SplayTree;
 
 
-    string source, destination;
+    int source, destination;
     int choice;
     do {
         cout << "\nWelcome to University Chatbot\n";
@@ -108,15 +108,8 @@ int main() {
                 cin>>source;
                 cout<<"Enter the place where you want to go: ";
                 cin>>destination;
-                string sourceKey;
-                for (const auto& entry : Map) {
-                    if (entry.second == source) {
-                        sourceKey = entry.first;
-                        break;
-                    }
-                }
 
-                g.dijkstra(stoi(sourceKey)); 
+                g.dijkstra(source); 
                 g.displayShortestPath(destination); 
                 cout << endl;
                 break;
@@ -126,7 +119,7 @@ int main() {
                 for (auto i : SyllabusMap) {
                     avlTree.insert(i.first);
                 }
-                searchSyllabus(avlTree);
+               // searchSyllabus(avlTree);
                 searchSyllabus(avlTree,SplayTree);
 
                 break;
