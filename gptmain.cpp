@@ -1,4 +1,5 @@
 #include <iostream>
+#include<cstdlib>
 #include <fstream>
 #include <string>
 #include <map>
@@ -94,6 +95,7 @@ int main() {
         cout << "\nWelcome to University Chatbot\n";
         cout << "1. Navigation\n";
         cout << "2. Syllabus\n";
+        cout<<"3. Display Map\n";
         cout << "3. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
@@ -124,6 +126,10 @@ int main() {
 
                 break;
             case 3:
+                cout << "\nDisplay Map selected\n";
+                system("python disp.py");
+                break;
+            case 4:
                 cout << "\nExiting...\n";
                 break;
             default:
