@@ -97,7 +97,6 @@ int main() {
         cout << "2. Syllabus\n";
         cout << "3. Display Map\n";
         cout << "4. View places\n";
-        cout << "5. Have a question?\n";
         cout << "5. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;

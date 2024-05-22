@@ -11,26 +11,14 @@ class SplayTree
         Comparable element2;
         BinaryNode *left;
         BinaryNode *right;
-        Comparable answer;
 
-<<<<<<< Updated upstream
         BinaryNode(const Comparable &theelement1 = Comparable{}, const Comparable &theelement2 = Comparable{}, BinaryNode *lt = nullptr, BinaryNode *rt = nullptr)
             : element1{theelement1}, element2{theelement2}, left{lt}, right{rt} {}
-=======
-        BinaryNode(const Comparable &theElement = Comparable{}, BinaryNode *lt = nullptr, BinaryNode *rt = nullptr,const Comparable &ans = Comparable{})
-            : element{theElement}, left{lt}, right{rt}, answer{ans} {}
->>>>>>> Stashed changes
     };
 
     BinaryNode *root;
     BinaryNode *nullNode;
-<<<<<<< Updated upstream
     // Function to get the top element1 of the Splay Tree
-=======
-
-    
-    // Function to get the top element of the Splay Tree
->>>>>>> Stashed changes
     
 
 
@@ -117,30 +105,16 @@ public:
         makeEmpty(root);
         delete nullNode;
     }
-    pair<Comparable, Comparable> getTop() {
+   Comparable getTop() {
     if (isEmpty())
-<<<<<<< Updated upstream
         return Comparable{}; // Return default value if tree is empty
     return root->element1;
-=======
-        return make_pair(Comparable{},Comparable{});
-    return make_pair(root->element,root->answer);
->>>>>>> Stashed changes
 }
-bool contains(const Comparable &x)
-    {
-        if (isEmpty())
-            return false;
-        splay(x, root);
-        return root->element == x;
-    }
-
 
 bool isEmpty() const
     {
         return root == nullNode;
     }
-<<<<<<< Updated upstream
 
 
     bool contains(const Comparable &x)
@@ -153,22 +127,13 @@ bool isEmpty() const
 
     
     void insert(const Comparable &x, const Comparable &y = Comparable{})
-=======
-    void insert(const Comparable &x , const Comparable &n=Comparable{})
->>>>>>> Stashed changes
     {
-        
         static BinaryNode *newNode = nullptr;
 
         if (newNode == nullptr)
             newNode = new BinaryNode;
-<<<<<<< Updated upstream
         newNode->element1 = x;
         newNode->element2 = y;
-=======
-            newNode->element = x;
-            newNode->answer = n;
->>>>>>> Stashed changes
 
         if (root == nullNode)
         {
@@ -229,7 +194,6 @@ bool isEmpty() const
                 printTree(root->left,level+1);
             }
         }
-<<<<<<< Updated upstream
     void displayRoot()
     {
         cout<<root->element1<<endl<<root->element2<<endl;
@@ -244,6 +208,4 @@ bool isEmpty() const
     }
 }
 
-=======
->>>>>>> Stashed changes
 };
