@@ -112,6 +112,8 @@ int main() {
                 cin>>destination;
 
                 g.dijkstra(source); 
+                g.exportShortestPath(destination);
+                system("python disp.py texts/ed.txt texts/coors.txt texts/mapping.txt");
                 g.displayShortestPath(destination); 
                 cout << endl;
                 break;
@@ -127,7 +129,7 @@ int main() {
                 break;
             case 3:
                 cout << "\nDisplay Map selected\n";
-                system("python disp.py");
+                system("python disp.py texts/edges.txt texts/coors.txt texts/mapping.txt");
                 break;
             case 4:
                 cout << "\nExiting...\n";

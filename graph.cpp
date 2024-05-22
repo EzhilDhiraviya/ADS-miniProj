@@ -11,7 +11,10 @@ int main()
     }
     
     g.dijkstra(15);
-    g.displayShortestPath(6);
+    g.exportShortestPath(6, "shortest_path.txt", "shortest_path_edges.txt");
+
+    // Call the Python script to display the shortest path
+    system("python d.py");
     cout<<endl;
     return 0;
 }
