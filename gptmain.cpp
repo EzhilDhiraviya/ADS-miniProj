@@ -6,7 +6,7 @@
 #include "avl.h"
 #include "graph.h"
 #include <bits/stdc++.h>
-#include "s.h" // Include your AVL Tree header file here
+#include "splay.h" // Include your AVL Tree header file here
 
 using namespace std;
 
