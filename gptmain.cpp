@@ -6,12 +6,7 @@
 #include "avl.h"
 #include "graph.h"
 #include <bits/stdc++.h>
-<<<<<<< Updated upstream
 #include "splay.h" // Include your AVL Tree header file here
-=======
-#include "splayy.h"
- // Include your AVL Tree header file here
->>>>>>> Stashed changes
 
 using namespace std;
 
@@ -112,12 +107,8 @@ int main() {
         cout << "1. Navigation\n";
         cout << "2. Syllabus\n";
         cout << "3. Display Map\n";
-<<<<<<< Updated upstream
         cout << "4. View places\n";
         cout << "5. Exit\n";
-=======
-        cout << "4. Exit\n";
->>>>>>> Stashed changes
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -173,11 +164,7 @@ int main() {
         default:
             cout << "Invalid choice! Please enter a valid option.\n";
         }
-<<<<<<< Updated upstream
     } while (choice < 7);
 
-=======
-    } while (choice != 4);
->>>>>>> Stashed changes
     return 0;
 }
