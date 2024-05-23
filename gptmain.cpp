@@ -146,7 +146,7 @@ int main() {
             readQnA(Q);
             if(Q.contains(qn));
             Q.displayRoot();
-            Q.printTree(); // You need to implement displayRoot function
+            //Q.printTree(); // You need to implement displayRoot function
             break;
         case 6:
             cout << "\nExiting...\n";
