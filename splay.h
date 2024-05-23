@@ -9,17 +9,16 @@ class SplayTree
     {
         Comparable element1;
         Comparable element2;
+        Comparable element3;
         BinaryNode *left;
         BinaryNode *right;
 
-        BinaryNode(const Comparable &theelement1 = Comparable{}, const Comparable &theelement2 = Comparable{}, BinaryNode *lt = nullptr, BinaryNode *rt = nullptr)
-            : element1{theelement1}, element2{theelement2}, left{lt}, right{rt} {}
+        BinaryNode(const Comparable &theelement1 = Comparable{}, const Comparable &theelement2 = Comparable{},const Comparable &theelement3 = Comparable{}, BinaryNode *lt = nullptr, BinaryNode *rt = nullptr)
+            : element1{theelement1}, element2{theelement2}, element3{theelement3},left{lt}, right{rt} {}
     };
 
     BinaryNode *root;
     BinaryNode *nullNode;
-    // Function to get the top element1 of the Splay Tree
-    
 
 
     
@@ -111,7 +110,7 @@ public:
     return root->element1;
 }
 
-bool isEmpty() const
+    bool isEmpty() const
     {
         return root == nullNode;
     }
@@ -126,7 +125,7 @@ bool isEmpty() const
     }
 
     
-    void insert(const Comparable &x, const Comparable &y = Comparable{})
+    void insert(const Comparable &x, const Comparable &y = Comparable{}, const Comparable &z = Comparable{})
     {
         static BinaryNode *newNode = nullptr;
 
@@ -134,6 +133,9 @@ bool isEmpty() const
             newNode = new BinaryNode;
         newNode->element1 = x;
         newNode->element2 = y;
+        newNode->element3 = z;
+
+        //cout<<"ele 1:"<<newNode->element1<<endl<<"ele 2:"<<newNode->element2<<endl<<"ele:3"<<newNode->element3<<endl;
 
         if (root == nullNode)
         {
@@ -196,15 +198,19 @@ bool isEmpty() const
         }
     void displayRoot()
     {
-        cout<<root->element1<<endl<<root->element2<<endl;
+        cout<<root->element2<<endl<<root->element3<<endl;
     }
 
     void readQnA(BinaryNode *t){
-    ifstream file("texts/questions.txt");
-    string qn,ans;
-    while(getline(file,qn)){
+    ifstream file("texts/check.txt");
+    string qn,ans,key;
+    while(getline(file,key)){
+        cout<<"key:"<<key<<endl;
+        getline(file,qn);
+        cout<<"qn:"<<qn<<endl;
         getline(file,ans);
-        t.insert(qn,ans);
+        cout<<"ans:"<<ans<<endl;
+        t.insert(key,qn,ans);
     }
 }
 

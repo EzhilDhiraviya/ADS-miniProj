@@ -16,7 +16,7 @@ def read_coordinates(file_path):
     with open(file_path, 'r') as file:
         for line in file:
             node, x, y = map(int, line.strip().split())
-            node_positions[node] = (x, -y)  # Invert y-coordinate to match matplotlib's coordinate system
+            node_positions[node] = (x, -y)  
     return node_positions
 
 def read_labels(file_path):
@@ -36,35 +36,24 @@ if __name__ == "__main__":
     coors_file = sys.argv[2]
     mapping_file = sys.argv[3]
 
-    # Define edges
     edges = read_edges(edges_file)
 
-    # Define positions for the nodes
     node_positions = read_coordinates(coors_file)
 
-    # Read node labels
     node_labels = read_labels(mapping_file)
 
-    # Create a graph
     G = nx.Graph()
 
-    # Add edges to the graph
     G.add_edges_from(edges)
 
-    # Set the size of the nodes (increase the node size)
     node_size = 3600
 
-    # Draw the graph with nodes represented in blue and fixed positions, with node labels
-    plt.figure(figsize=(15, 12))  # Set the figure size
+    plt.figure(figsize=(15, 12))  
     nx.draw(G, pos=node_positions, labels=node_labels, with_labels=True, node_color='blue', font_color='white', node_size=node_size)
 
     # Save the graph visualization as an image
     plt.savefig('graph_visualization.png')
 
-    # Close the plot to avoid displaying it
     plt.close()
 
-    # Open the generated image file using the default application
-    os.system('start graph_visualization.png')  # For Windows
-    # Alternatively, for Unix-based systems like Linux or macOS:
-    # os.system('xdg-open graph_visualization.png')
+    os.system('start graph_visualization.png') 

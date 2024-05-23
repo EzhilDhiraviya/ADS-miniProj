@@ -6,11 +6,10 @@
 #include "avl.h"
 #include "graph.h"
 #include <bits/stdc++.h>
-#include "splay.h" // Include your AVL Tree header file here
+#include "splay.h" 
 
 using namespace std;
 
-// map<int, string> Map;
 map<string, string> SyllabusMap;
 Graph g(17);
 
@@ -33,14 +32,12 @@ void loadData() {
     }
 }
 
-// Function to print the mapping data
 void printMap() {
     for (int i = 0; i < 17; i++) {
         cout << i + 1 << "-->" << Map[i] << "\n";
     }
 }
 
-// Function to print the syllabus data
 void printSyllabus() {
     for (auto i : SyllabusMap) {
         cout << i.first << ": " << i.second << "\n";
@@ -59,7 +56,6 @@ void searchSyllabus(AvlTree<string> &avlTree, SplayTree<string> &SplayTree) {
     cout << "Enter the course ID: ";
     cin >> courseId;
 
-    // Search for the course ID in the AVL tree
     if (avlTree.contains(courseId)) {
         cout << "Syllabus for Course ID " << courseId << ": " << SyllabusMap[courseId] << "\n";
         SplayTree.insert(courseId);
@@ -68,17 +64,28 @@ void searchSyllabus(AvlTree<string> &avlTree, SplayTree<string> &SplayTree) {
     }
 }
 
-// Function to create the graph from edges file
 void createGraph() {
     int u, v;
     ifstream file("texts/edges.txt");
     while (file >> u >> v) {
-        g.addEdge(u, v, 1); // Assuming all edges have weight 1
+        g.addEdge(u, v, 1); 
     }
 }
 
-// Declaration of the readQnA function
-void readQnA(SplayTree<string> &t);
+void readQnA(SplayTree<string> &t){
+    ifstream file("texts/check.txt");
+    string qn,ans,key;
+    while(getline(file,key)){
+       // cout<<"key:"<<key<<endl;
+        getline(file,qn);
+        //cout<<"qn:"<<qn<<endl;
+        getline(file,ans);
+        //cout<<"ans:"<<ans<<endl;
+        t.insert(key,qn,ans);
+    }
+}
+
+
 SplayTree<string> Q;
 int main() {
     loadData();
@@ -99,7 +106,7 @@ int main() {
         cout << "3. Display Map\n";
         cout << "4. View places\n";
         cout << "5. Have a question?\n";
-        cout << "5. Exit\n";
+        cout << "6. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -114,6 +121,7 @@ int main() {
             cin >> source;
             cout << "Enter the place where you want to go: ";
             cin >> destination;
+            cout<<"---------------------------------------------------\n";
             // source = g.getVertex(s);
             // destination = g.getVertex(d);
             g.dijkstra(--source);
@@ -130,15 +138,18 @@ int main() {
             }
             // searchSyllabus(avlTree);
             searchSyllabus(avlTree, SplayTree);
+            cout<<"---------------------------------------------------\n";
 
             break;
         case 3:
             cout << "\nDisplay Map selected\n";
             system("python disp.py texts/edges.txt texts/coors.txt texts/mapping.txt");
+            cout<<"---------------------------------------------------\n";
             break;
         case 4:
             cout << "\nDisplay Places\n";
             printMap();
+            cout<<"---------------------------------------------------\n";
             break;
         case 5:
             cout << "\nFAQ\n";
@@ -148,26 +159,22 @@ int main() {
             readQnA(Q);
             flag=Q.contains(qn);
             cout<<endl;
+            cout<<"---------------------------------------------------\n";
             Q.displayRoot();
-           // Q.printTree(); // You need to implement displayRoot function
+        
             break;
         case 6:
             cout << "\nExiting...\n";
             break;
         default:
             cout << "Invalid choice! Please enter a valid option.\n";
+            break;
         }
-    } while (choice < 7);
+    } while (choice !=6);
 
     return 0;
 }
 
-// Definition of the readQnA function
-void readQnA(SplayTree<string> &t) {
-    ifstream file("texts/questions.txt");
-    string qn, ans;
-    while (getline(file, qn)) {
-        getline(file, ans);
-        t.insert(qn, ans);
-    }
-}
+
+
+

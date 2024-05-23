@@ -36,7 +36,7 @@ public:
             vertices[i].path = -1;
             vertices[i].distance = INT_MAX;
         }
-        mapping("mapping.txt");  // Call the mapping function here
+        mapping("mapping.txt");  
     }
 
     void resetVisited()
