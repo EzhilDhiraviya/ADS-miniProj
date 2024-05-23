@@ -96,7 +96,7 @@ int main() {
         cout << "1. Navigation\n";
         cout << "2. Syllabus\n";
         cout<<"3. Display Map\n";
-        cout << "3. Exit\n";
+        cout << "4. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
           for (auto i : SyllabusMap) {
@@ -137,7 +137,7 @@ int main() {
             default:
                 cout << "Invalid choice! Please enter a valid option.\n";
         }
-    } while (choice != 3);
+    } while (choice != 4);
 
     return 0;
 }
