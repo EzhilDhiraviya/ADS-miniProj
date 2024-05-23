@@ -90,6 +90,7 @@ int main() {
     string s, d;
     int source, destination;
     int choice;
+    bool flag = false;
     string qn; // Declaration of qn here
     do {
         cout << "\nWelcome to University Chatbot\n";
@@ -142,11 +143,13 @@ int main() {
         case 5:
             cout << "\nFAQ\n";
             cout << "Enter your question\n";
-            cin >> qn;
+            cin.ignore();
+            getline(cin, qn);
             readQnA(Q);
-            if(Q.contains(qn));
+            flag=Q.contains(qn);
+            cout<<endl;
             Q.displayRoot();
-            Q.printTree(); // You need to implement displayRoot function
+           // Q.printTree(); // You need to implement displayRoot function
             break;
         case 6:
             cout << "\nExiting...\n";
