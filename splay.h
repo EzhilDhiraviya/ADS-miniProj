@@ -7,25 +7,18 @@ class SplayTree
     private:
     struct BinaryNode
     {
-        Comparable element;
+        Comparable element1;
+        Comparable element2;
         BinaryNode *left;
         BinaryNode *right;
 
-        BinaryNode(const Comparable &theElement = Comparable{}, BinaryNode *lt = nullptr, BinaryNode *rt = nullptr)
-            : element{theElement}, left{lt}, right{rt} {}
+        BinaryNode(const Comparable &theelement1 = Comparable{}, const Comparable &theelement2 = Comparable{}, BinaryNode *lt = nullptr, BinaryNode *rt = nullptr)
+            : element1{theelement1}, element2{theelement2}, left{lt}, right{rt} {}
     };
 
     BinaryNode *root;
     BinaryNode *nullNode;
-
-    bool contains(const Comparable &x)
-    {
-        if (isEmpty())
-            return false;
-        splay(x, root);
-        return root->element == x;
-    }
-    // Function to get the top element of the Splay Tree
+    // Function to get the top element1 of the Splay Tree
     
 
 
@@ -54,12 +47,12 @@ class SplayTree
         header.left = header.right = nullNode;
         leftTreeMax = rightTreeMin = &header;
 
-        nullNode->element = x; 
+        nullNode->element1 = x; 
 
         for (;;)
-            if (x < t->element)
+            if (x < t->element1)
             {
-                if (x < t->left->element)
+                if (x < t->left->element1)
                     rotateWithLeftChild(t);
                 if (t->left == nullNode)
                     break;
@@ -68,9 +61,9 @@ class SplayTree
                 rightTreeMin = t;
                 t = t->left;
             }
-            else if (t->element < x)
+            else if (t->element1 < x)
             {
-                if (t->right->element < x)
+                if (t->right->element1 < x)
                     rotateWithRightChild(t);
                 if (t->right == nullNode)
                     break;
@@ -115,20 +108,32 @@ public:
    Comparable getTop() {
     if (isEmpty())
         return Comparable{}; // Return default value if tree is empty
-    return root->element;
+    return root->element1;
 }
 
 bool isEmpty() const
     {
         return root == nullNode;
     }
-    void insert(const Comparable &x)
+
+
+    bool contains(const Comparable &x)
+    {
+        if (isEmpty())
+            return false;
+        splay(x, root);
+        return root->element1 == x;
+    }
+
+    
+    void insert(const Comparable &x, const Comparable &y = Comparable{})
     {
         static BinaryNode *newNode = nullptr;
 
         if (newNode == nullptr)
             newNode = new BinaryNode;
-        newNode->element = x;
+        newNode->element1 = x;
+        newNode->element2 = y;
 
         if (root == nullNode)
         {
@@ -138,14 +143,14 @@ bool isEmpty() const
         else
         {
             splay(x, root);
-            if (x < root->element)
+            if (x < root->element1)
             {
                 newNode->left = root->left;
                 newNode->right = root;
                 root->left = nullNode;
                 root = newNode;
             }
-            else if (root->element < x)
+            else if (root->element1 < x)
             {
                 newNode->right = root->right;
                 newNode->left = root;
@@ -177,9 +182,6 @@ bool isEmpty() const
         root = newTree;
     }
 
-        void display(){
-            display(root);
-        }
         void printTree(){
             printTree(root,0);
         }
@@ -188,9 +190,22 @@ bool isEmpty() const
                 printTree(root->right,level+1);
                 for(int i=0;i<level;i++)
                 cout<<"      ";
-                cout<<root->element<<endl;
+                cout<<root->element1<<endl;
                 printTree(root->left,level+1);
             }
         }
+    void displayRoot()
+    {
+        cout<<root->element1<<endl<<root->element2<<endl;
+    }
+
+    void readQnA(BinaryNode *t){
+    ifstream file("texts/questions.txt");
+    string qn,ans;
+    while(getline(file,qn)){
+        getline(file,ans);
+        t.insert(qn,ans);
+    }
+}
 
 };
